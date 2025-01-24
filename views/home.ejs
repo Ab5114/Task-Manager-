@@ -1,0 +1,171 @@
+<!-- home.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - ToDo App</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background: linear-gradient(
+          to right,
+          rgb(55, 79, 216),
+          rgb(54, 209, 220)
+        );
+      }
+
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        color: white;
+        padding: 20px 40px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .navbar h1 {
+        margin: 0;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+      }
+
+      .nav-links a:hover {
+        text-decoration: underline;
+      }
+
+      .intro-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgb(238, 229, 213);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        animation :moveUp 1s linear;
+      }
+   @keyframes moveUp {
+    from{
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    to{
+      transform: translateY(0px);
+      opacity: 1;
+    }
+   }
+      .intro-container h2 {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 25px;
+      }
+
+      .intro-container p {
+        text-align: center;
+        font-size: 1.2em;
+        color: #555;
+      }
+
+      .buttons {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .btn {
+        text-decoration: none;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 5px;
+        font-size: 16px;
+      }
+
+      .btn:hover {
+        background-color: #0056b3;
+      }
+
+      .btn-secondary {
+        background-color: #6c757d;
+      }
+
+      .btn-secondary:hover {
+        background-color: #5a6268;
+      }
+
+      @media (max-width: 650px) {
+        body {
+          flex-direction: column;
+          justify-content: flex-start;
+        }
+
+        .intro-container {
+          width: 100%;
+          padding: 10px;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .nav-links a {
+          margin: 10px 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div class="navbar-container">
+      <h1>Task Manager</h1>
+      <ul class="nav-links">
+        <% if (locals.user) { %>
+
+        <li><a href="/user/logout" class="btn btn-secondary" >Logout</a></li>
+        <% } else { %>
+
+        <li><a href="/user/signup" class="btn btn-secondary">Signup</a></li>
+        <li><a href="/user/signin" class="btn btn-secondary">Login</a></li>
+        <% } %>
+      </ul>
+    </div>
+
+    <!-- Introduction Section -->
+    <div class="intro-container">
+      <h2>Welcome to Your Task List Manager!</h2>
+      <p>
+        Manage your tasks effortlessly with our ToDo App. Sign up today to
+        organize your work, track your progress, and accomplish your goals.
+      </p>
+      <div class="buttons">
+        <a href="/todo" class="btn">Get Started</a>
+      </div>
+    </div>
+  </body>
+</html>
